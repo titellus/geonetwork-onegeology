@@ -42,7 +42,7 @@ GeoNetwork.Settings.editor = {
     editMode: {
 //        'iso19139': 'identification'
     },
-    editHarvested: false
+    editHarvested: true
 //    defaultViewMode : 'inspire'
 };
 

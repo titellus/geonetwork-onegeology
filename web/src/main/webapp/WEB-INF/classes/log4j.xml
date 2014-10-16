@@ -108,7 +108,7 @@
 
     <!--  Jeeves module and submodule logger configuration -->
     <logger name="jeeves" additivity="false">
-        <level value="DEBUG" />
+        <level value="WARN" />
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
@@ -178,7 +178,7 @@
         <level value="WARN" />
     </logger>
     <logger name="ro.isdc.wro.http" additivity="false">
-        <level value="DEBUG" />
+        <level value="WARN" />
         <appender-ref ref="allConsoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
