@@ -1,0 +1,85 @@
+# Migration de la base de données
+
+Lancer les scripts suivants :
+* 1-migrate-280.sql
+* 2-migrate-2100.sql
+* 3-migrate-2110.sql
+
+Vérifier que l'utilisateur GeoNetwork a les privilèges sur les tables.
+
+# TODO
+
+* branch
+* label radio mode hierarchy level
+
+
+Dans web.xml :
+
+<init-param>
+    <param-name>geonetwork.dir</param-name>
+    <param-value>/applications/projets/onegeology-catalog.brgm-rec.fr/tomcat/geonetworkdata</param-value>
+</init-param>
+<init-param>
+    <param-name>geosource.schema.dir</param-name>
+    <param-value>/applications/projets/onegeology-catalog.brgm-rec.fr/tomcat/webapps/geonetwork/WEB-INF/data/config/schema_plugins</param-value>
+</init-param>
+<init-param>
+    <param-name>geosource.codeList.dir</param-name>
+    <param-value>/applications/projets/onegeology-catalog.brgm-rec.fr/tomcat/webapps/geonetwork/WEB-INF/data/config/codelist</param-value>
+</init-param>
+<init-param>
+    <param-name>geosource.resources.dir</param-name>
+    <param-value>/applications/projets/onegeology-catalog.brgm-rec.fr/tomcat/webapps/geonetwork/WEB-INF/data/data/resources</param-value>
+</init-param>
+
+
+# Mettre à jour le WAR :
+
+Les changements suivant doivent être appliqués à la webapp :
+
+
+## Configurer la connection à la base de données
+
+Configurer le type de base de données dans le fichier WEB-INF/config-node/srv.xml :
+```
+ 	<import resource="../config-db/postgres.xml"/>
+```
+
+
+Dans le fichier WEB-INF/config-db/jdbc.properties, configurer la connection :
+
+```
+jdbc.username=www-data
+jdbc.password=www-data
+jdbc.database=1gg
+jdbc.host=localhost
+
+```
+
+Vider le contenu du fichier :
+
+WEB-INF/data/config/schemaplugin-uri-catalog.xml
+
+
+## Log
+
+Ajouter ${catalina.home}/log/geonetwork.log
+
+
+## Configure user interface
+
+Change default user interface to the search service in the WEB-INF/config-gui.xml
+```
+    <client type="redirect" widget="true" url="find" createParameter="#create" stateId="s"/>
+```
+
+Autoriser l'édition des fiches moissonnées dans apps/search/js/Settings.js :
+```
+    editHarvested: true
+```
+
+
+
+
+
+
